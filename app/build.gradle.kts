@@ -1,6 +1,9 @@
+import org.gradle.internal.impldep.org.eclipse.jgit.transport.NetRCCredentialsProvider.install
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.chaquo.python")
 }
 
 android {
@@ -13,8 +16,17 @@ android {
         targetSdk = 35
         versionCode = 1
         versionName = "1.0"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        //Integeration of Python
+
+        ndk {
+            // On Apple silicon, you can omit x86_64.
+            abiFilters += listOf("arm64-v8a", "x86_64")
+        }
+        manifestPlaceholders["chaquopy.python.version"] = "3.12"
+        manifestPlaceholders["chaquopy.python.buildPython"] = "/usr/local/bin/python3"
+
     }
 
     buildTypes {
@@ -33,8 +45,13 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+    sourceSets {
+        getByName("main").resources.srcDirs("src/main/python3")
+    }
     buildFeatures.viewBinding=true
 }
+
+
 
 dependencies {
 
@@ -43,8 +60,11 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation(libs.androidx.annotation)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation("com.airbnb.android:lottie:6.4.1")
+    implementation("com.chaquo.python:gradle:12.0.1")
+
 }

@@ -7,7 +7,30 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/tvText"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto_black"
+        app:layout_constraintBottom_toBottomOf="@+id/anim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fontFamily="@font/roboto_black"
+        android:text="00:00:00"
+        android:textSize="40dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="@+id/anim"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/anim"
         android:layout_width="150dp"
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
