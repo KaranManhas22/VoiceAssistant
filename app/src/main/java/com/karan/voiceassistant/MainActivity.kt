@@ -53,10 +53,17 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 //        val pyObj = py.getModule("hy")  // your script
 
         tts = TextToSpeech(this, this)
-        val python = Python.getInstance()
-        val py = python.getModule("hy")
-        val message = py.callAttr("get_greeting").toString()
-        speak(message)
+//        val python = Python.getInstance()
+//        val py = python.getModule("hy")
+//        val message = py.callAttr("get_greeting").toString()
+//        speak(message)
+        val py = Python.getInstance()
+        val pyModule = py.getModule("hy")
+
+        val result =
+            pyModule.callAttr("handle_command", "search wikipedia Kotlin", "Alex").toString()
+// You can then use TTS in Kotlin or return result in UI
+        speak(result)
         Log.d("VOICE_ASSISTANT", "Speaking: $text")
         permissionGranted = ActivityCompat.checkSelfPermission(
             this,

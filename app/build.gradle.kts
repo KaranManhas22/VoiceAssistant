@@ -25,7 +25,7 @@ android {
             abiFilters += listOf("arm64-v8a", "x86_64")
         }
         manifestPlaceholders["chaquopy.python.version"] = "3.12"
-        manifestPlaceholders["chaquopy.python.buildPython"] = "/usr/local/bin/python3"
+        manifestPlaceholders["chaquopy.python.buildPython"] = "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3"
 
     }
 
@@ -38,6 +38,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -48,6 +49,8 @@ android {
     sourceSets {
         getByName("main").resources.srcDirs("src/main/python3")
     }
+
+
     buildFeatures.viewBinding=true
 }
 
